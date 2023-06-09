@@ -19,9 +19,6 @@ const ThemeSwitch = (props) => {
       </View>
       <View>
         <StyledSwitch
-          trackColor={{ false: theme.colors.switch.track.off, true: theme.colors.switch.track.on }}
-          thumbColor={theme.colors.switch.thumb}
-          ios_backgroundColor={theme.colors.switch.iosBackground}
           onValueChange={toggleSwitch}
           value={isDarkMode}
         />
@@ -41,7 +38,11 @@ export const StyledTextSwitchLabel = styled(StyledTextTheme)`
   font-size: 20px;
 `;
 
-export const StyledSwitch = styled.Switch`
+export const StyledSwitch = styled.Switch.attrs(props => ({
+  trackColor: { false: props.theme.colors.switch.track.off, true: props.theme.colors.switch.track.on },
+  thumbColor: props.theme.colors.switch.thumb,
+  ios_backgroundColor: props.theme.colors.switch.iosBackground,
+}))`
   margin-left: 10px;
 `;
 
